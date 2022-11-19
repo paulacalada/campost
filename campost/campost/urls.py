@@ -16,7 +16,16 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from client import views
+
+
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('',views.add_show, name = "addandshow"),
+    path('', views.home),
+    path('connexion/', views.connexion),
+    path('compte/', views.traiter_compte, name = "edite"),
+    
+    #path('',views.add_show, name = "addandshow"),
+    path('client/',views.traiter_client, name = "edit"),
+    #path('',views.traiter_compte, name = "edite"),
+    path('delete/<int:id>/',views.delete_data, name = "deletedata"),
 ]

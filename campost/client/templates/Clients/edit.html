@@ -1,16 +1,48 @@
-{% extends 'Clients/app.html' %}
+{% extends 'Clients/client.html' %}
 {% block content %}
 <div class="row">
     <div class="col-sn-4">
-        <h4 class="text-center alert alert alert-info">Ajouter un nouveau client </h4>
+        <h4 class="text-center alert alert alert-info ">Ajouter un nouveau client </h4>
             <form action="" method="POST">
                 {%csrf_token %}
                 {{form.as_p}}
                 <input type="submit" class="btn btn-success" value="Ajouter">
             </form>
     </div>
-    <div class="col-sm-8">
-        <h4 class="text-center alert alert alert-info">Montrer les informations des clients</h4>
+    <div class="col-sm-20">
+        <h4 class="text-center alert alert alert-info ">Informations des clients</h4>
+        {% if cli %}
+        <table class="table table-hover">
+            <thead>
+              <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Nom</th>
+                <th scope="col">Prenom</th>
+                <th scope="col">Telephone</th>
+                <th scope="col">Adresse</th>
+                <th scope="col">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+                {% for st in cli %}
+              <tr>
+                <th scope="row">{{st.id}}</th>
+                <td>{{st.nom}}</td>
+                <td>{{st.prenom}}</td>
+                <td>{{st.telephone}}</td>
+                <td>{{st.adresse}}</td>
+                <td>
+                    <a href="a" class="btn btn-warning btn-sm">Modifier</a>
+                    <a href="a" class="btn btn-danger btn-sm">Supprimer</a>
+                </td>
+              </tr>
+              {% endfor %}
+              
+            </tbody>
+          </table>
+        {% else %}
+        <h4 class="text-center alert alert-warning">Pas d'enregistrement</h4>
+        {% endif %}
     </div>
 </div>
 {% endblock content %}

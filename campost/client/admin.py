@@ -1,10 +1,10 @@
 from django.contrib import admin
-from .models import User
+#from .models import User
 from .models import Client, Compte
 # Register your models here.
-@admin.register(User)
-class UserAdmin(admin.ModelAdmin):
-    list_display = ('id','name','telephone','email','password')
+#@admin.register(User)
+#class UserAdmin(admin.ModelAdmin):
+    #list_display = ('id','name','telephone','email','password')
 
 @admin.register(Client)
 class ClientAdmin(admin.ModelAdmin):
@@ -12,4 +12,5 @@ class ClientAdmin(admin.ModelAdmin):
     
 @admin.register(Compte)
 class CompteAdmin(admin.ModelAdmin):
-    list_display = ('numero','client','solde','jour')        
+    list_display = ('numero','client','solde','jour')  
+          
