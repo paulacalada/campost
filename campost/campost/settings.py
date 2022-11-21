@@ -38,6 +38,11 @@ INTERNAL_IPS = [
     # ...
 ]
 
+CSRF_TRUSTED_ORIGINS = [
+   # 'https://hemant-to-do.herokuapp.com'
+    'https://campost-2022.herokuapp.com'
+]
+
 
 # Application definition
 
