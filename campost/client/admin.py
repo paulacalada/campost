@@ -12,5 +12,5 @@ class ClientAdmin(admin.ModelAdmin):
     
 @admin.register(Compte)
 class CompteAdmin(admin.ModelAdmin):
-    list_display = ('numero','client','solde','jour')  
+    list_display = ('numero','client','solde')  
           
