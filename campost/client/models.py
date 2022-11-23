@@ -33,7 +33,7 @@ class Agence(models.Model):
 
 class Profil(models.Model):
     user = models.OneToOneField(User,null=True, on_delete=models.SET_NULL)  # La liaison OneToOne vers le modèle User
-    role = models.OneToOneField(Role, null=True, on_delete=models.SET_NULL)  # La liaison OneToOne vers le modèle Role
+    role = models.ForeignKey(Role, null=True, on_delete=models.SET_NULL)  # La liaison OneToOne vers le modèle Role
     agence = models.ForeignKey(Agence, null=True, on_delete=models.SET_NULL)
     avatar = models.ImageField(null=True, blank=True, upload_to="avatars/")
     is_active = models.BooleanField(default=True)
