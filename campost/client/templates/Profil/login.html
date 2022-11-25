@@ -24,20 +24,26 @@
     
         <h4 class="text-center alert alert-primary">PAGE DE CONNEXION</h2>
 
-        <div>
-            {% if error %}
-                <p class="alert alert-warning"><strong>Utilisateur inexistant ou mauvais de mot de passe.</strong></p>
-                {% endif %}
-
-                {% if user.is_authenticated %}
-                Vous êtes connecté, {{ user.username }} !
-                {% else %}
-                <form method="post" action=".">
-                    {% csrf_token %}
-                    {{ form.as_p }}
-                    <input type="submit"/>
-                </form>
-                {% endif %}
+        <div class="text-center">
+            <div style="max-width: 400px; margin: 0 auto;">
+                <div>
+                    {% if error %}
+                        <p class="alert alert-warning"><strong>Utilisateur inexistant ou mauvais de mot de passe.</strong></p>
+                        {% endif %}
+        
+                        {% if user.is_authenticated %}
+                        Vous êtes connecté, {{ user.username }} !
+                        {% else %}
+                        <form method="post" action=".">
+                            {% csrf_token %}
+                            {{ form.as_p }}
+                            <div class="text-center">
+                                <input class="btn btn-primary" type="submit"/>
+                            </div>
+                        </form>
+                        {% endif %}
+                </div>
+            </div>
         </div>    
     </div>
 
