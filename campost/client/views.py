@@ -131,7 +131,7 @@ def deconnexion(request):
 def admin_dashboard(request):
     #return redirect('/some/url/')
     user = current_user = request.user
-    if current_user.profil.id==1:
+    if current_user.profil.role.id==1:
         return render(request, 'Admin/dashboard.html',locals())
     else:    
         return redirect('/login')
@@ -148,7 +148,7 @@ def admin_parametres_agences(request):
             return HttpResponseRedirect(request.path_info)   
     else:    
         current_user = request.user
-        if current_user.profil.id==1:
+        if current_user.profil.role.id==1:
             agences = Agence.objects.all()
             regions = Region.objects.all()
             form = AgenceForm()
@@ -176,7 +176,7 @@ def admin_parametres_utilisateurs(request):
             return HttpResponseRedirect(request.path_info)   
     else:    
         current_user = request.user
-        if current_user.profil.id==1:
+        if current_user.profil.role.id==1:
             utilisateurs = Profil.objects.all()
             agences = Agence.objects.all()
             roles = Role.objects.all()
@@ -190,7 +190,7 @@ def admin_clients(request):
     #return redirect('/some/url/')
     
     current_user = request.user
-    if current_user.profil.id==1:
+    if current_user.profil.role.id==1:
         clients = Client.objects.all()
         #form = Form()
         return render(request, 'Admin/Clients/index.html',{'clients':clients,})
@@ -201,7 +201,7 @@ def admin_client(request,id):
     #return redirect('/some/url/')
     
     current_user = request.user
-    if current_user.profil.id==1:
+    if current_user.profil.role.id==1:
         client = Client.objects.get(pk=id)
         #form = Form()
         return render(request, 'Admin/Clients/show.html',{'client':client})
@@ -211,7 +211,7 @@ def admin_client(request,id):
 def admin_transactions(request):
     #return redirect('/some/url/')
     user = current_user = request.user
-    if current_user.profil.id==1:
+    if current_user.profil.role.id==1:
         return render(request, 'Admin/transactions.html', locals())
     else:    
         return redirect('/login')
@@ -223,7 +223,7 @@ def admin_transactions(request):
 def receveur_utilisateurs(request):
        
     current_user = request.user
-    if current_user.profil.id==2:
+    if current_user.profil.role.id==2:
         agence = current_user.profil.agence
         utilisateurs = Profil.objects.filter(agence=agence)
         return render(request, 'Receveur/Utilisateurs/index.html',{'utilisateurs':utilisateurs})
@@ -239,7 +239,7 @@ def receveur_dashboard(request):
     
 def receveur_transactions(request):
     current_user = request.user
-    if current_user.profil.id==2:
+    if current_user.profil.role.id==2:
         transactions = Operation.objects.filter(agence=current_user.profil.agence)
         return render(request, 'Receveur/transactions.html',{'transactions':transactions})
     else:    
@@ -287,7 +287,7 @@ def agent_client(request):
         numero = form.cleaned_data["numero"]
         compte = Compte.objects.get(numero=numero)
         current_user = request.user
-        if current_user.profil.id==3:
+        if current_user.profil.role.id==3:
             return render(request, 'Agent/client.html',{'client':compte.client})
     else:    
         return redirect('/login')
@@ -316,7 +316,7 @@ def agent_retrait(request):
         numero = form.data.get("numero")
         compte = Compte.objects.get(numero=numero)
         current_user = request.user
-        if current_user.profil.id==3:
+        if current_user.profil.role.id==3:
             now = datetime.datetime.now()
             num = '{}{}{}'.format(now.strftime('%H%d%m%y'),current_user.profil.agence.id,current_user.id)
             transaction = Operation.objects.create(montant=montant,compte=compte,client=compte.client,user=current_user,agence=current_user.profil.agence,is_deposit=False,region=current_user.profil.agence.region,autorisation=num)
