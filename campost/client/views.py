@@ -232,7 +232,7 @@ def receveur_utilisateurs(request):
     
 def receveur_dashboard(request):
     current_user = request.user
-    if current_user.profil.id==2:
+    if current_user.profil.role.id==2:
         return render(request, 'Receveur/dashboard.html',locals())
     else:    
         return redirect('/login')
@@ -247,14 +247,14 @@ def receveur_transactions(request):
 
 def agent_dashboard(request):
     current_user = request.user
-    if current_user.profil.id==3:
+    if current_user.profil.role.id==3:
         return render(request, 'Agent/dashboard.html',locals())
     else:    
         return redirect('/login')
     
 def agent_transactions(request):
     current_user = request.user
-    if current_user.profil.id==3:
+    if current_user.profil.role.id==3:
         transactions = Operation.objects.filter(user=current_user)
         return render(request, 'Agent/transactions.html',{'transactions':transactions})
     else:    
