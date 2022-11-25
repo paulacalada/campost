@@ -212,7 +212,7 @@ def admin_transactions(request):
     #return redirect('/some/url/')
     user = current_user = request.user
     if current_user.profil.role.id==1:
-        transactions = Operation.objects.filter(agence=current_user.profil.agence)
+        transactions = Operation.objects.all()
         return render(request, 'Admin/transactions.html',{'transactions':transactions})
     else:    
         return redirect('/login')
