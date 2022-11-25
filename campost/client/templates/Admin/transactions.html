@@ -1,4 +1,4 @@
-{% extends 'layouts/receveur.html' %}
+{% extends 'layouts/admin.html' %}
 {% block header %}
       <div class="p-3 mb-2 bg-light">
          <h3 class="text-center">HISTORIQUE DES TRANSACTIONS</h3>
@@ -22,6 +22,7 @@
                         <th>COMPTE</th>
                         <th>TYPE</th>
                         <th>MONTANT</th>
+                         <th>AGENCE</th>
                         <th>AGENT</th>
                         <th></th>
                       </tr>
@@ -38,6 +39,7 @@
                             <td><span class="badge badge-danger">retrait<i class="fa fa-download" ></i></span></td>
                             {% endif %}
                             <td>{{ st.montant }}</td>
+                            <td>{{ st.agence.nom }}</td>
                             <td>{{ st.user.username }}</td>
                             <td><a class="btn btn-xs btn-danger" href="/receveur/transaction/cancel/{{ st.id }}">Annuler</a></td>
                           </tr>
